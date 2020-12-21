@@ -1,0 +1,25 @@
+.sidebar {
+	width: 30vw;
+	height: 980px;
+	background-color: white;
+	overflow: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.sidebar::-webkit-scrollbar {
+	display: none;
+}
+
+.image {
+	width: 319px;
+	height: 214px;
+	margin: 5px;
+	border: 4px solid #dde2e8;
+	box-sizing: border-box;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.image:hover {
+	border: 4px solid #1b1e22;
+}

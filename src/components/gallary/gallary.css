@@ -1,0 +1,20 @@
+.gallary {
+	width: 70vw;
+	height: 95vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	border-radius: 8px;
+	flex-wrap: wrap;
+	overflow: hidden;
+}
+
+.drop-box {
+	height: 366px;
+	width: 577px;
+	border: 2px dashed #dde2e8;
+	box-sizing: border-box;
+	border-radius: 8px;
+	justify-self: center;
+	align-self: center;
+}
