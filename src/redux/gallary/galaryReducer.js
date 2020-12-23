@@ -11,10 +11,17 @@ const gallaryRuducer = (state = initialState, action) => {
 				...state,
 				gallary: [...state.gallary, action.payload],
 			};
-		case Actions.sortMedia:
+		case Actions.sortedGallary:
 			return {
 				...state,
-				gallary: state.gallary.splice(action.hoverIndex, 0, action.dragCard),
+				gallary: action.payload,
+			};
+		case Actions.deletePic:
+			return {
+				...state,
+				gallary: state.gallary.filter((obj, index) => {
+					return obj.img !== action.payload;
+				}),
 			};
 		default:
 			return { ...state };

@@ -23,7 +23,7 @@
 	display: none;
 }
 .gallaryImg:hover .mousehover {
-	display: block;
+	display: block !important;
 }
 .pushdown {
 	width: 112px;
@@ -49,8 +49,16 @@
 .dropHere {
 	height: 251px;
 	width: 375px;
-	background: #fcfcfc;
+	background: #fcfcfc !important;
 	border: 2px dashed #dde2e8;
 	box-sizing: border-box;
 	border-radius: 8px;
+}
+.modal {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	z-index: 99999;
+	top: 71px;
+	left: -56px;
 }

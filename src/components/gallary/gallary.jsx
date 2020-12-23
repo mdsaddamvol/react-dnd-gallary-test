@@ -4,16 +4,17 @@ import { connect } from "react-redux";
 import "./gallary.css";
 import Card from "../card/card";
 import { Sudogallary } from "./Sudogalary";
+import { sortedGallary } from "../../redux/gallary/gallayActions";
 
 const style = {
 	width: 400,
 };
 
-const Gallary = ({ gallary }) => {
+const Gallary = ({ gallary, sortedGallary }) => {
 	const [cards, setCards] = useState([]);
 	useEffect(() => {
 		setCards(gallary.gallary);
-	}, [gallary.gallary]);
+	}, [setCards, gallary.gallary]);
 
 	const moveCard = useCallback(
 		(dragIndex, hoverIndex) => {
@@ -26,8 +27,9 @@ const Gallary = ({ gallary }) => {
 					],
 				})
 			);
+			sortedGallary(cards);
 		},
-		[cards]
+		[cards, sortedGallary]
 	);
 	let key = "a";
 	const renderCard = (obj, index) => {
@@ -45,7 +47,18 @@ const Gallary = ({ gallary }) => {
 		);
 	};
 
-	return <Sudogallary>{cards.map((obj, i) => renderCard(obj, i))}</Sudogallary>;
+	return (
+		<Sudogallary>
+			{cards.length === 0 ? (
+				<div
+					style={{ justifySelf: "center", alignSelf: "center" }}
+					className='drop-box'
+				></div>
+			) : (
+				cards.map((obj, i) => renderCard(obj, i))
+			)}
+		</Sudogallary>
+	);
 };
 
 const mapStateToProps = (state) => {
@@ -53,5 +66,12 @@ const mapStateToProps = (state) => {
 		gallary: state.gallary,
 	};
 };
+const mapDispatchToProps = (dispatch, ownProps) => {
+	return {
+		sortedGallary: (props) => {
+			dispatch(sortedGallary(props));
+		},
+	};
+};
 
-export default connect(mapStateToProps)(Gallary);
+export default connect(mapStateToProps, mapDispatchToProps)(Gallary);

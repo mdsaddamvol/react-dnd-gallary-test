@@ -13,12 +13,11 @@
 .gallary::-webkit-scrollbar {
 	display: none;
 }
-.gallary .drop-box {
+.drop-box {
 	height: 366px;
 	width: 577px;
 	border: 2px dashed #dde2e8;
 	box-sizing: border-box;
 	border-radius: 8px;
-	justify-self: center;
-	align-self: center;
+	margin: 0 auto;
 }

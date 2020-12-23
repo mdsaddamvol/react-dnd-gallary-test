@@ -5,8 +5,12 @@ export const MediaDropInGallary = (src) => ({
 	payload: src,
 });
 
-export const sortMedia = (hoverIndex, dragCard) => ({
-	type: Actions.sortMedia,
-	hoverIndex,
-	dragCard,
+export const sortedGallary = (props) => ({
+	type: Actions.sortedGallary,
+	payload: props,
+});
+
+export const deletePic = (props) => ({
+	type: Actions.deletePic,
+	payload: props,
 });

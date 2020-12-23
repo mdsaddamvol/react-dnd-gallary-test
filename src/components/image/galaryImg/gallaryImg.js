@@ -1,28 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { deletePic } from "../../../redux/gallary/gallayActions";
+import { toggleModal } from "../../../redux/modal/modal-Action";
 import Modal from "../../modal/modal";
 import Mousehover from "../../svgs/mousehoversvg";
 import "./gallaryImg.css";
 
-const GallaryImg = ({ id, img, data, isOver, modalOpen }) => {
+const GallaryImg = ({ id, index, img, data, isOver, deletePic }) => {
+	const [modalOpen, setModalOpen] = useState(false);
+	const display = modalOpen ? "block" : "none";
 	return (
 		<React.Fragment>
 			{isOver ? (
 				<div className='dropHere'></div>
 			) : (
 				<div className='gallaryImg'>
-					<div className='mousehover'>
+					<div style={{ display }} className='mousehover'>
 						<div className='pushdown'>
 							<div
 								className='settingiconClick'
-								onClick={() => console.log("setting")}
+								onClick={() => setModalOpen(!modalOpen)}
 							></div>
 							<div
 								className='deleteIconClick'
-								onClick={() => console.log("delete")}
+								onClick={() => deletePic(img)}
 							></div>
 							<Mousehover />
+
 							{modalOpen ? (
-								<Modal id={id} img={img} data={data} modalOpen={modalOpen} />
+								<div className='modal'>
+									<Modal id={id} img={img} data={data} modalOpen={modalOpen} />
+								</div>
 							) : null}
 						</div>
 					</div>
@@ -33,5 +41,20 @@ const GallaryImg = ({ id, img, data, isOver, modalOpen }) => {
 		</React.Fragment>
 	);
 };
+const mapStateToProps = (state) => {
+	return {
+		modalOpen: state.modal.modalOpen,
+	};
+};
+const mapDispatchToProps = (dispatch) => {
+	return {
+		toggleModal: () => {
+			dispatch(toggleModal());
+		},
+		deletePic: (index) => {
+			dispatch(deletePic(index));
+		},
+	};
+};
 
-export default GallaryImg;
+export default connect(mapStateToProps, mapDispatchToProps)(GallaryImg);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import Sidebar from "./components/sidebar/sidebar";
 import Gallary from "./components/gallary/gallary";
@@ -10,7 +10,9 @@ function App() {
 		<div className='container'>
 			<DndProvider backend={HTML5Backend}>
 				<div className='sidebar-container'>
-					<Sidebar />
+					<Suspense fallback={<h1>...Loading</h1>}>
+						<Sidebar />
+					</Suspense>
 				</div>
 
 				<div className='gallary-container'>
