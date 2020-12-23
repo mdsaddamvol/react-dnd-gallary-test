@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchMedia } from "../../redux/media-side-bar/media-Action";
-import Image from "../image/image";
 import "./sidebar.css";
-
+import Image from "../image/image";
 const Sidebar = ({ data, fetchMedia }) => {
 	useEffect(() => {
 		const getdata = async () => {
@@ -15,16 +14,24 @@ const Sidebar = ({ data, fetchMedia }) => {
 				}
 			);
 			const d = await res.json();
+
 			fetchMedia(d);
 		};
 		getdata();
 	}, [fetchMedia]);
-
+	let key = "b";
 	return (
 		<div className='sidebar'>
 			<h2>Media Penel</h2>
-			{data.media.map((obj) => (
-				<Image key={obj.char_id} src={obj.img} />
+			{data.media.map((obj, index) => (
+				<Image
+					key={key + index}
+					id={obj.id}
+					img={obj.img}
+					index={index}
+					data={obj.data}
+					modal={obj.modal}
+				/>
 			))}
 		</div>
 	);

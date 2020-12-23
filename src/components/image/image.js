@@ -3,36 +3,34 @@ import { useDrag } from "react-dnd";
 import { connect } from "react-redux";
 import { MediaDropInGallary } from "../../redux/gallary/gallayActions";
 import { ItemTypes } from "../itemTypes";
-const Image = ({ src, MediaDropInGallary }) => {
-	const [{ isDragging }, drag] = useDrag({
-		item: { src, type: ItemTypes.Image },
+const Image = ({ id, img, data, modalOpen, gallary, MediaDropInGallary }) => {
+	const [, drag] = useDrag({
+		item: { type: ItemTypes.Image, id, img, data, modalOpen },
 		end: (item, monitor) => {
 			const dropResult = monitor.getDropResult();
+			const alredyDroped = gallary.gallary.find((obj) => obj.id === item.id);
+			if (alredyDroped) {
+				return;
+			}
 			if (item && dropResult) {
-				MediaDropInGallary(item.src);
+				MediaDropInGallary(item);
 			}
 		},
-		collect: (monitor) => ({
-			isDragging: monitor.isDragging(),
-		}),
 	});
-	const opacity = isDragging ? 0.4 : 1;
-	return (
-		<img
-			ref={drag}
-			className='image'
-			style={{ opacity }}
-			src={src}
-			alt='mideai'
-		/>
-	);
+
+	return <img ref={drag} className='image' src={img} alt='mideai' />;
+};
+const mapStateToProps = (state) => {
+	return {
+		gallary: state.gallary,
+	};
 };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		MediaDropInGallary: (src) => {
-			dispatch(MediaDropInGallary(src));
+		MediaDropInGallary: (item) => {
+			dispatch(MediaDropInGallary(item));
 		},
 	};
 };
 
-export default connect(null, mapDispatchToProps)(Image);
+export default connect(mapStateToProps, mapDispatchToProps)(Image);

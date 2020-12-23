@@ -1,0 +1,50 @@
+.modal_box {
+	height: 281px;
+	width: 264px;
+	left: -10px;
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	background-color: white;
+	cursor: pointer;
+	position: absolute;
+	z-index: 99;
+	border-radius: 8px;
+	box-shadow: 0px 14px 40px rgba(15, 44, 71, 0.3);
+}
+.modal_text_top {
+	width: 222px;
+	height: 47px;
+	font-family: Roboto;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 24px;
+	letter-spacing: 0em;
+	text-align: left;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	opacity: 0.2;
+	border-bottom: 1px solid #4a5257;
+	margin-bottom: 10px;
+}
+.center_width {
+	width: 222px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.modal_img {
+	height: 150px !important;
+	width: 224px !important;
+	border-radius: 0px;
+}
+.modal_text_bottom {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
+}

@@ -1,37 +1,51 @@
-import React from "react";
-import { useDrop } from "react-dnd";
+import React, { useState, useCallback, useEffect } from "react";
+import update from "immutability-helper";
 import { connect } from "react-redux";
-import { ItemTypes } from "../itemTypes";
-import Image from "../image/image";
 import "./gallary.css";
+import Card from "../card/card";
+import { Sudogallary } from "./Sudogalary";
+
+const style = {
+	width: 400,
+};
 
 const Gallary = ({ gallary }) => {
-	const [{ canDrop, isOver }, drop] = useDrop({
-		accept: ItemTypes.Image,
-		drop: () => ({ name: "gallary" }),
-		collect: (monitor) => ({
-			isOver: monitor.isOver(),
-			canDrop: monitor.canDrop(),
-		}),
-	});
-	const isActive = canDrop && isOver;
-	let backgroundColor = "white";
-	if (isActive) {
-		backgroundColor = "darkgreen";
-	} else if (canDrop) {
-		backgroundColor = "darkkhaki";
-	}
-	return (
-		<div ref={drop} style={{ backgroundColor }} className='gallary'>
-			{gallary.gallary.length === 0 ? (
-				<div className='drop-box'></div>
-			) : (
-				gallary.gallary.map((item, i) => {
-					return <Image key={i} src={item} />;
+	const [cards, setCards] = useState([]);
+	useEffect(() => {
+		setCards(gallary.gallary);
+	}, [gallary.gallary]);
+
+	const moveCard = useCallback(
+		(dragIndex, hoverIndex) => {
+			const dragCard = cards[dragIndex];
+			setCards(
+				update(cards, {
+					$splice: [
+						[dragIndex, 1],
+						[hoverIndex, 0, dragCard],
+					],
 				})
-			)}
-		</div>
+			);
+		},
+		[cards]
 	);
+	let key = "a";
+	const renderCard = (obj, index) => {
+		return (
+			<Card
+				style={style}
+				key={key + index}
+				id={obj.id}
+				index={index}
+				img={obj.img}
+				data={obj.data}
+				modalOpen={obj.modalOpen}
+				moveCard={moveCard}
+			/>
+		);
+	};
+
+	return <Sudogallary>{cards.map((obj, i) => renderCard(obj, i))}</Sudogallary>;
 };
 
 const mapStateToProps = (state) => {
@@ -39,4 +53,5 @@ const mapStateToProps = (state) => {
 		gallary: state.gallary,
 	};
 };
+
 export default connect(mapStateToProps)(Gallary);

@@ -12,6 +12,7 @@ function App() {
 				<div className='sidebar-container'>
 					<Sidebar />
 				</div>
+
 				<div className='gallary-container'>
 					<Gallary />
 				</div>

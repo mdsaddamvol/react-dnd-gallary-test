@@ -1,0 +1,56 @@
+.gallaryImg {
+	height: 251px;
+	width: 375px;
+	border-radius: 8px;
+	box-sizing: border-box;
+	margin-top: 0px;
+	margin-left: 0px;
+	position: relative;
+}
+.gallaryImg img {
+	width: inherit;
+	height: inherit;
+	box-sizing: inherit;
+	border-radius: inherit;
+	border: "2px solid #dde2e8";
+}
+.mousehover {
+	height: 36px;
+	position: absolute;
+	width: 112px;
+	left: 20px;
+	top: 20px;
+	display: none;
+}
+.gallaryImg:hover .mousehover {
+	display: block;
+}
+.pushdown {
+	width: 112px;
+	height: 36px;
+	position: relative;
+}
+
+.settingiconClick {
+	width: 50%;
+	height: 90%;
+	display: inline-block;
+	position: absolute;
+	cursor: pointer;
+}
+.deleteIconClick {
+	width: 50%;
+	height: 90%;
+	left: 50px;
+	display: inline-block;
+	position: absolute;
+	cursor: pointer;
+}
+.dropHere {
+	height: 251px;
+	width: 375px;
+	background: #fcfcfc;
+	border: 2px dashed #dde2e8;
+	box-sizing: border-box;
+	border-radius: 8px;
+}

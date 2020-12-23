@@ -14,12 +14,13 @@
 	width: 319px;
 	height: 214px;
 	margin: 5px;
-	border: 4px solid #dde2e8;
+	border: 2px solid #dde2e8;
 	box-sizing: border-box;
 	border-radius: 8px;
 	overflow: hidden;
+	cursor: grab;
 }
 
 .image:hover {
-	border: 4px solid #1b1e22;
+	border: 2px solid#DDE2E8;
 }
