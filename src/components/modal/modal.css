@@ -43,21 +43,29 @@
 }
 .center_width {
 	width: 222px;
+	height: 186px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.center_width_filter {
+	width: 222px;
+	height: 186px;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	margin-top: 25px;
 }
 
-.modal_img {
-	height: 150px !important;
-	width: 224px !important;
-	border-radius: 0px;
-}
 .modal_text_bottom {
+	width: 150px;
+	height: 10px;
 	font-family: Roboto;
 	font-style: normal;
+	text-align: center;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 24px;
 	color: #35aef2;
+	margin: 0 auto;
 }

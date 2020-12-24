@@ -5,6 +5,7 @@ import "./gallary.css";
 import Card from "../card/card";
 import { Sudogallary } from "./Sudogalary";
 import { sortedGallary } from "../../redux/gallary/gallayActions";
+import Folderlogo from "../svgs/imglogo";
 
 const style = {
 	width: 400,
@@ -53,7 +54,10 @@ const Gallary = ({ gallary, sortedGallary }) => {
 				<div
 					style={{ justifySelf: "center", alignSelf: "center" }}
 					className='drop-box'
-				></div>
+				>
+					<Folderlogo />
+					<h3>Drop an image from Media Panel</h3>
+				</div>
 			) : (
 				cards.map((obj, i) => renderCard(obj, i))
 			)}

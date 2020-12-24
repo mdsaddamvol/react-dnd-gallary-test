@@ -2,8 +2,18 @@ import React from "react";
 import { useDrag } from "react-dnd";
 import { connect } from "react-redux";
 import { MediaDropInGallary } from "../../redux/gallary/gallayActions";
+import { changeModalImg } from "../../redux/modal/modal-Action";
 import { ItemTypes } from "../itemTypes";
-const Image = ({ id, img, data, modalOpen, gallary, MediaDropInGallary }) => {
+
+const Image = ({
+	id,
+	img,
+	data,
+	gallary,
+	modalOpen,
+	MediaDropInGallary,
+	changeModalImg,
+}) => {
 	const [, drag] = useDrag({
 		item: { type: ItemTypes.Image, id, img, data, modalOpen },
 		end: (item, monitor) => {
@@ -17,18 +27,35 @@ const Image = ({ id, img, data, modalOpen, gallary, MediaDropInGallary }) => {
 			}
 		},
 	});
+	const handleimgChange = (img) => {
+		if (modalOpen) {
+			changeModalImg(img);
+		}
+	};
 
-	return <img ref={drag} className='image' src={img} alt='mideai' />;
+	return (
+		<img
+			onClick={() => handleimgChange(img)}
+			ref={drag}
+			className='image'
+			src={img}
+			alt='mideai'
+		/>
+	);
 };
 const mapStateToProps = (state) => {
 	return {
 		gallary: state.gallary,
+		modalOpen: state.modal.modalOpen,
 	};
 };
 const mapDispatchToProps = (dispatch) => {
 	return {
 		MediaDropInGallary: (item) => {
 			dispatch(MediaDropInGallary(item));
+		},
+		changeModalImg: (img) => {
+			dispatch(changeModalImg(img));
 		},
 	};
 };
