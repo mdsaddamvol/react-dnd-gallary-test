@@ -1,10 +1,19 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import rootReducer from "./rootReducer";
 import logger from "redux-logger";
-
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "./rootReducer";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import thunk from "redux-thunk";
 const middleWires = [thunk, logger];
 
-const store = createStore(rootReducer, applyMiddleware(...middleWires));
+const persistConfig = {
+	key: "root",
+	storage,
+	whitelist: ["media", "gallary", "modal"],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer, applyMiddleware(...middleWires));
+export let persistor = persistStore(store);
 
 export default store;
