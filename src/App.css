@@ -18,3 +18,8 @@
 	justify-content: center;
 	align-items: center;
 }
+.close {
+	width: 75vw;
+	height: inherit;
+	position: relative;
+}
