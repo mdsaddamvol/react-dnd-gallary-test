@@ -1,22 +1,33 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
 import "./modal.css";
-const Modal = ({ id, img, data, modalOpen }) => {
-	const [filter, setFilter] = useState(false);
-	const opacite = filter ? 0.5 : 1;
-	const opacity = !filter ? 0.5 : 1;
+
+const Modal = ({ img, position, closeModal }) => {
+	const [filterSpan, setFilterSpan] = useState(false);
+	const opacite = filterSpan ? 0.5 : 1;
+	const opacity = !filterSpan ? 0.5 : 1;
+	const positions = { left: position.left - 440, top: position.top + 54 };
+
 	return (
-		<div className='modal_box'>
+		<div style={{ ...positions }} className='modal_box'>
 			<div className='center_width'>
 				<div className='modal_text_top'>
-					<span onClick={() => setFilter(!filter)} style={{ opacity: opacite }}>
+					<span
+						onMouseDown={() => setFilterSpan(!filterSpan)}
+						style={{ opacity: opacite }}
+					>
 						Image
 					</span>
-					<span onClick={() => setFilter(!filter)} style={{ opacity }}>
+					<span
+						onMouseDown={() => setFilterSpan(!filterSpan)}
+						style={{ opacity }}
+					>
 						Filter
 					</span>
 				</div>
 				<div className='modal_text_top_border'></div>
-				{!filter ? (
+				{!filterSpan ? (
 					<div className='center_width'>
 						<img className='modal_img' src={img} alt='edit it' />
 						<span className='modal_text_bottom'>Change photo</span>
@@ -63,5 +74,10 @@ const Modal = ({ id, img, data, modalOpen }) => {
 		</div>
 	);
 };
+const mapStateToProps = (state, ownProps) => {
+	return {
+		positions: state.modal.position,
+	};
+};
 
-export default Modal;
+export default connect(mapStateToProps)(Modal);

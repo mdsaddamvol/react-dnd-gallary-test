@@ -1,3 +1,8 @@
+.modal {
+	width: 75vw;
+	height: 100vh;
+	position: absolute;
+}
 .modal_box {
 	height: 281px;
 	width: 264px;
@@ -8,9 +13,9 @@
 	justify-content: center;
 	background-color: white;
 	cursor: pointer;
-	position: absolute;
-	z-index: 99;
 	border-radius: 8px;
+	position: absolute;
+	z-index: 999;
 	box-shadow: 0px 14px 40px rgba(15, 44, 71, 0.3);
 }
 .modal_text_top {
