@@ -7,7 +7,6 @@ const SettingAndDeleteIcons = ({ img, openModal, deletePic }) => {
 	const handleModal = (e) => {
 		const BoundingRect = e.target.getBoundingClientRect();
 		const position = { top: BoundingRect.top, left: BoundingRect.left };
-		console.log(BoundingRect);
 		openModal(position, img);
 	};
 	return (
